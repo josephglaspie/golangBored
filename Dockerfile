@@ -8,7 +8,7 @@ WORKDIR /go/src/${APP_NAME}
 
 RUN go get ./
 RUN go build -o ${APP_NAME}
+EXPOSE ${PORT}
 
 CMD ./${APP_NAME}
 
-EXPOSE ${PORT}
