@@ -24,7 +24,7 @@ spec:
         io.kompose.service: web
     spec:
       containers:
-        - image: josephglaspie/bored:v0.0.2
+        - image: josephglaspie/bored:v0.0.5
           name: web
           ports:
             - containerPort: 8080

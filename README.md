@@ -10,7 +10,7 @@ and return results with something fun to do.
 
 #### Push to Docker Hub
 ```
-APP_TAG=josephglaspie/bored:v0.0.2
+APP_TAG=josephglaspie/bored:v0.0.5
 docker build . -t $APP_TAG
 docker push $APP_TAG
 ```
@@ -25,3 +25,4 @@ minikube service web
 ```
 ngrok http http://127.0.0.1:56952
 ```
+Take the return from ngrok and add it to the twilio webhook
