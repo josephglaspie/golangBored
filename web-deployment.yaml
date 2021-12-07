@@ -24,7 +24,7 @@ spec:
         io.kompose.service: web
     spec:
       containers:
-        - image: web
+        - image: josephglaspie/golangcraigslist:v0.0.1
           name: web
           ports:
             - containerPort: 8080
