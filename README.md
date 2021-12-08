@@ -44,6 +44,8 @@ ngrok http http://127.0.0.1:56952
 Take the return from ngrok and add it to the twilio webhook
 
 #### Use local images
-In my deployment yaml you'll find I'm using an image I pushed to Dockerhub. If you're using minikube and 
-want to use local images only check out this [medium article](https://medium.com/swlh/how-to-run-locally-built-docker-images-in-kubernetes-b28fbc32cc1d) 
+In the deployment yaml you'll find  an image pushed to Dockerhub. If you're using minikube and 
+want to use local images only, check out this [medium article](https://medium.com/swlh/how-to-run-locally-built-docker-images-in-kubernetes-b28fbc32cc1d) 
 
+#### EKS
+aws eks --region us-east-2 update-kubeconfig --name test-cluster
