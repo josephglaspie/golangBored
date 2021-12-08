@@ -48,4 +48,11 @@ In the deployment yaml you'll find  an image pushed to Dockerhub. If you're usin
 want to use local images only, check out this [medium article](https://medium.com/swlh/how-to-run-locally-built-docker-images-in-kubernetes-b28fbc32cc1d) 
 
 #### EKS
+Used eks module: https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest
+```
+terraform apply
 aws eks --region us-east-2 update-kubeconfig --name test-cluster
+k apply -f web-deployment.yaml
+```
+
+Now we need to expose the application https://aws.amazon.com/premiumsupport/knowledge-center/eks-kubernetes-services-cluster/
