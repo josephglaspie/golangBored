@@ -62,8 +62,13 @@ provider "aws" {
 https://console.aws.amazon.com/iam/home?region=us-east-2#/security_credentials
 - Acess Keys > Create new key
 ```
+terraform init
+terraform plan
 terraform apply #Go make some tea or coffee this will take around 10 minutes to build out
+# Connect your kubectl to the cluster
 aws eks --region us-east-2 update-kubeconfig --name test-cluster
+# Test connection
+k get pods
 k apply -f web-deployment.yaml
 terraform destroy
 ```
