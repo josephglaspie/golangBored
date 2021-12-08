@@ -89,6 +89,7 @@ func bored(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, twimlgo)
 }
 
+
 func twiml(input string) string {
 	begining := `<?xml version="1.0" encoding="UTF-8"?>
 <Response>

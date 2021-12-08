@@ -4,6 +4,22 @@ This app will find something fun to do if you're bored. Just enter the number of
 `http://127.0.0.1:55020/bored?query=2` 
 and return results with something fun to do.
 
+### Prerequisites
+```
+#install Go
+brew install go
+
+#install Docker
+brew cask install docker
+
+#install minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64
+sudo install minikube-darwin-amd64 /usr/local/bin/minikube
+
+#install Kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
+
+```
 #### To run locally
 
 `go run app.go`
