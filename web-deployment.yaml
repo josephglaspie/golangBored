@@ -50,3 +50,46 @@ spec:
       targetPort: 8080
   selector:
     io.kompose.service: web
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service-cluster-ip
+  labels:
+    io.kompose.service: web
+spec:
+  type: ClusterIP
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service-nodeport
+spec:
+  type: NodePort
+  selector:
+    io.kompose.service: web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service-loadbalancer
+  labels:
+    io.kompose.service: web
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
