@@ -3,3 +3,5 @@ tfvars.tf
 .terraform/
 *.hcl
 *.tfstate*
+terraform/kubeconfig_test-cluster
+kubernetes-ingress/

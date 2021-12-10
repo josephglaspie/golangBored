@@ -11,4 +11,3 @@ RUN go build -o ${APP_NAME}
 EXPOSE ${PORT}
 
 CMD ./${APP_NAME}
-
