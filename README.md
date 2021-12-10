@@ -1,7 +1,9 @@
 # golangCraigslist
 
 This app will find something fun to do if you're bored. Just enter the number of people you are currently with
-`http://127.0.0.1:55020/bored?query=2` 
+`curl --location --request POST 'http://k8s-bored-ingressb-a7cccb6576-1355983709.us-east-2.elb.amazonaws.com/bored' \
+--header 'Content-Type: text/plain' \
+--data-raw '5'` 
 and return results with something fun to do.
 
 ### Prerequisites
@@ -46,13 +48,9 @@ ngrok http http://127.0.0.1:56952
 ```
 Take the return from ngrok and add it to the twilio webhook
 
-#### Use local images
-In the deployment yaml you'll find  an image pushed to Dockerhub. If you're using minikube and 
-want to use local images only, check out this [medium article](https://medium.com/swlh/how-to-run-locally-built-docker-images-in-kubernetes-b28fbc32cc1d) 
-
 #### EKS
 - Used eks module: https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest
-- Create main.tf as seen in this repo and tfvars.tf with the following:
+- Create main.tf as seen in this repo and tfvars.tf (.gitignore) with the following:
 
 ```
 provider "aws" {
@@ -74,10 +72,12 @@ aws configure #paste your keys into the correct places
 aws eks --region us-east-2 update-kubeconfig --name test-cluster
 # Will return something like: Updated context arn:aws:eks:us-east-2:244172242562:cluster/test-cluster in /Users/name/.kube/config
 
-# Ingress
-# https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html
-# https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html
-# https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.3/how-it-works/
+```
+### Ingress
+- [The Best Ingress Doc](https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html)
+- [AWS Ingress Github](https://github.com/kubernetes-sigs/aws-load-balancer-controller)
+- [AWS App Load Balancer]( https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html)
+- [How AWS Load Balancer controller works](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.3/how-it-works/)
 
 ```
 aws iam create-policy \
@@ -116,7 +116,7 @@ Key – kubernetes.io/role/elb
 Value – 1
 Also, add your subnets to the ingress annotation:
 `alb.ingress.kubernetes.io/subnets: subnet-redact, subnet-876sadf, subnet-00a17755b8`
-
+```
 # Test connection
 k get pods -n kube-system
 k apply -f web-deployment.yaml
