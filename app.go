@@ -2,36 +2,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/gorilla/schema"
+	"github.com/gorilla/handlers"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 )
-
-var decoder  = schema.NewDecoder()
-
-
-type twilioResponse struct {
-//	ToCountry     string `schema:"ToCountry"`
-//	ToState       string `schema:"ToState"`
-//	SmsMessageSid string `schema:"SmsMessageSid"`
-//	NumMedia      string `schema:"NumMedia"`
-//	ToCity        string `schema:"ToCity"`
-//	FromZip       string `schema:"FromZip"`
-//	SmsSid        string `schema:"SmsSid"`
-//	FromState     string `schema:"FromState"`
-//	SmsStatus     string `schema:"SmsStatus"`
-//	FromCity      string `schema:"FromCity"`
-	Body          string `in:"form=Body"`
-//	FromCountry   string `schema:"FromCountry"`
-//	To            string `schema:"To"`
-//	ToZip         string `schema:"ToZip"`
-//	NumSegments   string `schema:"NumSegments"`
-//	MessageSid    string `schema:"MessageSid"`
-//	AccountSid    string `schema:"AccountSid"`
-//	From          string `schema:"From"`
-//	ApiVersion    string `schema:"ApiVersion"`
-}
 
 func main() {
 	port := os.Getenv("PORT")
@@ -41,7 +17,10 @@ func main() {
 
 	http.HandleFunc("/bored", bored)
 	http.HandleFunc("/", home)
-	http.ListenAndServe(":"+port, nil)
+	err := http.ListenAndServe("127.0.0.1:"+port, handlers.LoggingHandler(os.Stdout, http.DefaultServeMux))
+	if err != nil {
+		log.Fatal("Server failed to load ",err)
+	}
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
