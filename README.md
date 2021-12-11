@@ -1,9 +1,12 @@
-# golangCraigslist
+# golangBored
 
 This app will find something fun to do if you're bored. Just enter the number of people you are currently with
-`curl --location --request POST 'http://k8s-bored-ingressb-a7cccb6576-1355983709.us-east-2.elb.amazonaws.com/bored' \
+```
+curl --location --request POST 'http://k8s-bored-ingressb-a7cccb6576-1355983709.us-east-2.elb.amazonaws.com/bored' \
 --header 'Content-Type: text/plain' \
---data-raw '5'` 
+--data-raw '5'
+```
+
 and return results with something fun to do.
 
 ### Prerequisites
